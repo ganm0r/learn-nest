@@ -6,11 +6,11 @@ import {
   Header,
   Param,
   Body,
-  Put,
+  // Put,
   Delete,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
+// import { UpdateCatDto } from './dto/update-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
 
@@ -40,10 +40,10 @@ export class CatsController {
     return `This action returns cat with ID ${id}`;
   }
 
-  @Put(':id')
-  update(@Body() updateCatDto: UpdateCatDto) {
-    return 'This action updates a cat';
-  }
+  // @Put(':id')
+  // update(@Body() updateCatDto: UpdateCatDto) {
+  //   return 'This action updates a cat';
+  // }
 
   @Delete(':id')
   delete(@Param('id') id: string) {
