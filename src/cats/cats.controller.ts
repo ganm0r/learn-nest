@@ -10,6 +10,7 @@ import {
   Delete,
   HttpException,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 // import { UpdateCatDto } from './dto/update-cat.dto';
@@ -51,7 +52,13 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): string {
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ): string {
     return `This action returns cat with ID ${id}`;
   }
 
