@@ -13,4 +13,9 @@ export class CatsController {
   create(): string {
     return 'This action adds a new cat';
   }
+
+  @Get('breeds')
+  findBreeds(): string {
+    return 'This action returns all cat breeds';
+  }
 }
