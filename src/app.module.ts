@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
-import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { logger } from './common/middleware/logger.middleware';
 import { CatsController } from './cats/cats.controller';
 
 @Module({
@@ -12,7 +12,7 @@ import { CatsController } from './cats/cats.controller';
 })
 class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes(CatsController);
+    consumer.apply(logger).forRoutes(CatsController);
   }
 }
 
