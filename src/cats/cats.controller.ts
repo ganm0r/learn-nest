@@ -8,6 +8,8 @@ import {
   Body,
   // Put,
   Delete,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 // import { UpdateCatDto } from './dto/update-cat.dto';
@@ -20,7 +22,20 @@ export class CatsController {
 
   @Get()
   async findAll(): Promise<Cat[]> {
-    return this.catsService.findAll();
+    try {
+      return await this.catsService.findAll();
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'Forbidden Route',
+        },
+        HttpStatus.FORBIDDEN,
+        {
+          cause: error,
+        },
+      );
+    }
   }
 
   @Post()
