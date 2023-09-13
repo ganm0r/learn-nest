@@ -16,12 +16,14 @@ import { CreateCatDto } from './dto/create-cat.dto';
 // import { UpdateCatDto } from './dto/update-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
+import { Public } from 'src/common/decorators/public';
 
 @Controller('cats')
 export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Get()
+  @Public()
   async findAll(): Promise<Cat[]> {
     try {
       return await this.catsService.findAll();
@@ -42,6 +44,7 @@ export class CatsController {
   @Post()
   @HttpCode(204)
   @Header('Cache-Control', 'none')
+  @Public()
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
@@ -52,6 +55,7 @@ export class CatsController {
   }
 
   @Get(':id')
+  @Public()
   findOne(
     @Param(
       'id',
@@ -68,6 +72,7 @@ export class CatsController {
   // }
 
   @Delete(':id')
+  @Public()
   delete(@Param('id') id: string) {
     return `This action removes cat with ID ${id}`;
   }
