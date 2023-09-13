@@ -16,7 +16,9 @@ import { CreateCatDto } from './dto/create-cat.dto';
 // import { UpdateCatDto } from './dto/update-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
-import { Public } from 'src/common/decorators/public';
+import { Public } from 'src/common/decorators/public.decorator';
+import { Roles } from 'src/common/decorators/roles.decorator';
+import { Role } from 'src/common/enums/role.enum';
 
 @Controller('cats')
 export class CatsController {
@@ -45,6 +47,7 @@ export class CatsController {
   @HttpCode(204)
   @Header('Cache-Control', 'none')
   @Public()
+  @Roles(Role.Admin)
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }

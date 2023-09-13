@@ -13,11 +13,13 @@ class UsersService {
       userId: 1,
       username: 'john',
       password: 'changeme',
+      roles: ['user'],
     },
     {
       userId: 2,
       username: 'maria',
       password: 'guess',
+      roles: ['admin', 'user'],
     },
   ];
 
